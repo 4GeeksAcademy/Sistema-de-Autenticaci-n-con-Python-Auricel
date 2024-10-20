@@ -43,7 +43,7 @@ setup_admin(app)
 setup_commands(app)
 
 # Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+app.config["JWT_SECRET_KEY"] = "Auricel Le voy a los leones del caracas"  # Change this!
 jwt = JWTManager(app)
 
 

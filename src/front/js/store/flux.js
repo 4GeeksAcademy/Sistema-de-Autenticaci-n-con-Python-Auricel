@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				const data = await response.json();
-				localStorage.setItem("token", data.token)
+				localStorage.setItem("token", data.access_token)
 				console.log('Login exitoso:', data);
 
 			},
