@@ -1,48 +1,83 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 
-const Login= () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-    const {actions, store}= useContext(Context)
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { actions } = useContext(Context);
     const navigate = useNavigate();
 
- 
+    // Manejar el envío del formulario
+    const handleSubmit = async (e) => {
+        e.preventDefault();  // Prevenir que el formulario recargue la página
+
+        try {
+            // Realiza la llamada a la acción de login
+            const response = await actions.login(email, password);
+
+            // Si la autenticación es exitosa
+            console.log("Inicio de sesión exitoso");
+
+            // Limpiar los campos de entrada
+            setEmail("");
+            setPassword("");
+
+            // Redirigir al usuario a la ruta privada
+            navigate("/private");
+        } catch (error) {
+            // Manejo de errores
+            alert("Error en el login: " + error.message);
+        }
+    };
+
     return (
         <div className="d-flex justify-content-center mt-5">
-            <h1>Login</h1>
-            <input type="text" onChange={(e)=> setEmail(e.target.value)} value={email} placeholder="email" autoComplete="off"></input>
-            <input type="password" onChange={(e)=> setPassword(e.target.value)} value={password} placeholder="password" autoComplete="off"></input>
-            
-            <button 
-                className="btn btn-primary me-3" 
-                onClick={async () => {
-                    try {
-                        // Realiza la llamada a la acción de login
-                        const response = await actions.login(email, password); 
-                        
-                        // Si la autenticación es exitosa
-                        console.log("Inicio de sesión exitoso");
-                        
-                        // Limpiar los campos de entrada
-                        setEmail("");
-                        setPassword("");
-                        
-                        // Redirigir al usuario a la ruta privada
-                        navigate("/private"); 
-                    } catch (error) {
-                        // Manejo de errores
-                        alert('Error en el login: ' + error.message);
-                    }
-                }}
-            >
-                Enviar
-            </button>
+            <form onSubmit={handleSubmit}className="p-4 bg-dark text-white rounded">
+                <h1 className="titulo">Login</h1>
 
+                {/* Campo de email */}
+                <div class="mb-3">
+                    <label for="Email" className="form-label">Email address</label>
+                    <input
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        placeholder="name@example.com"
+                        autoComplete="off"
+                        // el REQUIRED es para asegurarte de que el usuario no pueda enviar el formulario sin completar los campo.
+                        required
+                        className="form-control"
+                        aria-describedby="emailHelp"
+                    />
+                </div>
+
+                {/* Campo de contraseña */}
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <input
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    placeholder="password"
+                    autoComplete="off"
+                    // el REQUIRED es para asegurarte de que el usuario no pueda enviar el formulario sin completar los campo.
+                    required
+                    className="form-control"
+
+                   
+                />
+                   
+                </div>
+               
+
+                {/* Botón de enviar */}
+                <button type="submit" className="boton btn me-3">
+                    Enviar
+                </button>
+            </form>
         </div>
-    ) 
-}
+    );
+};
 
-export default Login
+export default Login;

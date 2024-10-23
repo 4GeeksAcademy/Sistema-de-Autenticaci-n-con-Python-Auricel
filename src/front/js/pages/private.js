@@ -21,18 +21,23 @@ const Private = () => {
     }, [actions, navigate]);
 
     return (
-        <div>
-            <h1>Bienvenidos a la Pagina de Solos para Registrados</h1>
-            
-            {/* Añadir el GIF externo aquí */}
-            <img src="https://media.giphy.com/media/xUPGcguWZHRC2HyBRS/giphy.gif" alt="Bienvenidos" />
+        <div className="container-fluid d-flex justify-content-center align-items-center flex-column vh-100"> {/* Ajuste para centrar en la página */}
+            <div className="mb-3 text-center">
+                <h1 className="mb-4 titulo" >Bienvenidos a la Página de Solos para Registrados</h1>
 
-            <div className="ml-auto">
-					<Link to="/">
-						<button className="btn btn-primary">Cerrar Sesion</button>
-					</Link>
-				</div>
+                {/* GIF, con clase img-fluid para que sea responsive */}
+                <img src="https://i0.wp.com/bestgrafix.com/wp-content/uploads/2024/09/Halloween-GIF-1-1.gif?resize=640%2C480&ssl=1" 
+                     alt="Bienvenidos" 
+                     className="img-fluid mb-4" 
+                     style={{ maxWidth: "70%", height: "auto" }}
+                />
+            </div>
 
+            <div className="mb-3">
+                <Link to="/">
+                <button className="boton btn me-3">Cerrar Sesión</button>
+                </Link>
+            </div>
         </div>
     );
 };

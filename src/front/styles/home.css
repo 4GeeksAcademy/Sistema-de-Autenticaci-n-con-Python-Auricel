@@ -1,7 +1,16 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.titulo {
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+    font-family: "Agdasima", sans-serif;
+    font-weight: 500;
+    color: yellow;
+    size: 30%;
+}
+
+.form-label {
+    color: whitesmoke;
+}
+
+.boton{
+    background-color: orange;
+    color: whitesmoke;
+}
